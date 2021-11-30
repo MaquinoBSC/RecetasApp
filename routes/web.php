@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use app\Http\Controllers;
+use app\Http\Controllers\RecetaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,5 +19,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Route::get('/recetas', 'RecetaController@index');
+Route::get('/recetas', 'RecetaController@index');
 
 Auth::routes();
