@@ -11,7 +11,8 @@
 
     <div class="row justify-content-center mt-5">
         <div class="col-md-8">
-            <form metho="POST">
+            <form method="POST" action="{{ route('recetas.store') }}">
+                @csrf
                 <div class="form-group">
                     <label for="titulo">Titulo Receta </label>
                     <input type="text" name="titulo" class="form-control" id="titulo" placeholder="Titulo Receta" />
