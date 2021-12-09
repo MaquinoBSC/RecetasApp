@@ -17,6 +17,8 @@
         <div class="col-md-8">
             <form method="POST" action="{{ route('recetas.store') }}" novalidate>
                 @csrf
+
+                {{-- Titulo de la Receta --}}
                 <div class="form-group">
                     <label for="titulo">Titulo Receta </label>
                     <input 
@@ -34,6 +36,7 @@
                     @enderror
                 </div>
 
+                {{-- Categoria de la Receta --}}
                 <div class="from-group" >
                     <label for="categoria">Categoria</label>
                     <select name="categoria" class="form-control @error('categoria') is-invalid @enderror" id="categoria" >
@@ -52,6 +55,7 @@
                     @enderror
                 </div>
 
+                {{-- Preparacion de la Receta --}}
                 <div class="form-group mt-3">
                     <label for="preparacion">Preparación</label>
                     <input id=preparacion type="hidden" name="preparacion" value="{{ old('preparacion') }}">
@@ -64,6 +68,7 @@
                     @enderror
                 </div>
 
+                {{-- Ingredientes --}}
                 <div class="form-group mt-3">
                     <label for="ingredientes">Ingredientes</label>
                     <input id=ingredientes type="hidden" name="ingredientes" value="{{ old('ingredientes') }}">
@@ -76,6 +81,24 @@
                     @enderror
                 </div>
 
+                {{-- Imagen de la Receta --}}
+                 <div class="form-group mt-3">
+                    <label for="imagen">Elige la imagen</label>
+                    <input 
+                        id="imagen" 
+                        type="file" 
+                        class="form-control @error('imagen') is-invalid @enderror"
+                        name="imagen"
+                    />
+
+                    @error('imagen')
+                        <span class="invalid-feedback d-block" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+
+                {{-- Boton para agregar Receta --}}
                 <div class="form-group">
                     <input type="submit" class="btn btn-primary" value="Agregar Receta" >
                 </div>
