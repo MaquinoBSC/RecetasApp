@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Receta;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class RecetaController extends Controller
@@ -45,15 +46,20 @@ class RecetaController extends Controller
     public function store(Request $request)
     {
         $data= request()->validate([
-            'titulo'=> 'required|min:6|max:10',
-            'categoria'=> 'required',
-            'preparacion'=> 'required',
+            'titulo'=> 'required|min:6|max:40',
             'ingredientes'=> 'required',
-            'imagen'=> 'required|image|size:1000',
+            'preparacion'=> 'required',
+            // 'imagen'=> 'required|image|size:1000',
+            'categoria'=> 'required',
         ]);
 
         DB::table('recetas')->insert([
-            'titulo'=> $data['titulo']
+            'titulo'=> $data['titulo'],
+            'ingredientes'=> $data['ingredientes'],
+            'preparacion'=> $data['preparacion'],
+            'imagen'=> 'imagen.jpg',
+            'user_id'=> Auth::user()->id,
+            'categoria_id'=> $data['categoria'],
         ]);
 
         //Redireccionar
